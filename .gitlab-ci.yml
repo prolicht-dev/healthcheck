@@ -1,10 +1,7 @@
-before_script:
-  - export GOPATH=${CI_PROJECT_DIR}/.cache
-  - export GOARCH=amd64
-  - export OSS="linux freebsd netbsd darwin"
-  - apt-get update -qq && apt-get -y -qq install jq xxd
+image: golang:1.16
 
-# build and test stages, unrelated to this article
+stages:
+  - release
 
 release:
   stage: release
