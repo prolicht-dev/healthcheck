@@ -10,6 +10,11 @@ the healthcheck executable (*hc*) will end with exit code 1. Otherwise, exit cod
 
 ## Usage
 
+Download the executable from:
+``
+https://git.prolicht.digital/go/healthcheck/releases/v1.0.0/downloads/hc
+``
+
 Add this to your Docker file:
 ```Dockerfile
 COPY --from=buildImage /build/hc ./hc
