@@ -1,14 +1,28 @@
 image: golang:1.16
 
 stages:
+  - build
   - release
 
-release:
-  stage: release
+build:
+  stage: build
   script:
     - make
+    - echo "${CI_JOB_ID}" > CI_JOB_ID.txt # This way you know the job id in the next stage
   artifacts:
     paths:
       - hc*
+    expire_in: never
+  only:
+    - tags
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - |
+      release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG \
+        --assets-link "{\"name\":\"Executable\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/file/hc\"}" \
+        --assets-link "{\"name\":\"Checksum\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/file/hc.sha256\"}"
   only:
     - tags
