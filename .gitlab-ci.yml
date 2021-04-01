@@ -23,7 +23,7 @@ release:
   script:
     - |
       release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG \
-        --assets-link "{\"name\":\"Download Executable\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/file/hc?inline=false\"}" \
-        --assets-link "{\"name\":\"Download Checksum\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/file/hc.sha256?inline=false\"}"
+        --assets-link "{\"name\":\"Download Executable\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/raw/hc?inline=false\"}" \
+        --assets-link "{\"name\":\"Download Checksum\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/raw/hc.sha256?inline=false\"}"
   only:
     - tags
