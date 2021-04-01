@@ -1,0 +1,17 @@
+before_script:
+  - export GOPATH=${CI_PROJECT_DIR}/.cache
+  - export GOARCH=amd64
+  - export OSS="linux freebsd netbsd darwin"
+  - apt-get update -qq && apt-get -y -qq install jq xxd
+
+# build and test stages, unrelated to this article
+
+release:
+  stage: release
+  script:
+    - make
+  artifacts:
+    paths:
+      - hc*
+  only:
+    - tags
