@@ -9,7 +9,7 @@ dep:
 	$(GOCMD) mod download
 
 build: dep
-	GOOS=linux GOARCH=amd64 go build -o $(PROGNAME) -ldflags="-w -s" cmd/$(PROGNAME)/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o $(PROGNAME) -ldflags="-w -s -extldflags \"-static\"" cmd/$(PROGNAME)/main.go
 	sha256sum $(PROGNAME) >$(PROGNAME).sha256
 
 test:
@@ -26,3 +26,4 @@ coverage-html: coverage
 clean: ## Remove build related file
 	rm -fr ./$(PROGNAME)
 	rm -fr ./$(PROGNAME).sha256
+	rm -fr .testCoverage.txt

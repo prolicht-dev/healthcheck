@@ -25,7 +25,7 @@ Docker usage:
 ```Dockerfile
 COPY --from=buildImage /build/hc ./hc
 
-HEALTHCHECK --interval=1s --timeout=1s --start-period=2s --retries=3 CMD [ "/hc", "www.url.to.check.com" ]
+HEALTHCHECK --interval=1s --timeout=1s --start-period=2s --retries=3 CMD [ "/hc", "http://www.url.to.check.com" ]
 ```
 
 ## Health check service library
