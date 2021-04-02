@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"os"
+	"time"
 )
 
 // main checks the given URL, if the response is not 200, it will return with exit code 1
@@ -12,7 +13,10 @@ func main() {
 		os.Exit(1)
 	}
 	url := os.Args[1]
-	if resp, err := http.Get(url); err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
+	var client = &http.Client{
+		Timeout: time.Second * 2,
+	}
+	if resp, err := client.Get(url); err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
 		os.Exit(1)
 	}
 }
