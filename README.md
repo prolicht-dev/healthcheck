@@ -10,12 +10,18 @@ the healthcheck executable (*hc*) will end with exit code 1. Otherwise, exit cod
 
 ## Usage
 
-Download the executable from:
-``
-https://git.prolicht.digital/go/healthcheck/releases/v1.0.0/downloads/hc
-``
+Download the executable from [here](https://git.prolicht.digital/go/healthcheck/-/releases/v1.0.0/downloads/binaries/hc).
 
-Add this to your Docker file:
+Binary usage:
+```bash
+hc <url to check>
+
+ - url to check: the full HTTP GET endpoint address that will be queried
+ - exit code: 0 on success, 1 on failure
+```
+
+
+Docker usage:
 ```Dockerfile
 COPY --from=buildImage /build/hc ./hc
 
