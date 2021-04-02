@@ -10,8 +10,8 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
-hc
-hc.sha256
+/hc
+/hc.sha256
 .testCoverage.txt
 
 # Dependency directories (remove the comment below to include it)
