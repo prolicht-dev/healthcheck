@@ -1,3 +1,3 @@
-module git.prolicht.digital/go/healthcheck
+module git.prolicht.digital/pub/healthcheck
 
 go 1.16

@@ -12,6 +12,7 @@
 *.out
 hc
 hc.sha256
+.testCoverage.txt
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

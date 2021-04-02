@@ -10,7 +10,7 @@ the healthcheck executable (*hc*) will end with exit code 1. Otherwise, exit cod
 
 ## Usage
 
-Download the executable from [here](https://git.prolicht.digital/go/healthcheck/-/releases/v1.0.0/downloads/binaries/hc).
+Download the executable from [here](https://git.prolicht.digital/pub/healthcheck/-/releases/v1.0.0/downloads/binaries/hc).
 
 Binary usage:
 ```bash

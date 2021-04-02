@@ -1,8 +1,22 @@
 image: golang:1.16
 
 stages:
+  - test
   - build
   - release
+
+test:
+  stage: test
+  script:
+    - make test
+    - make coverage
+
+build-master:
+  stage: build
+  script:
+    - make
+  only:
+    - master
 
 build:
   stage: build
@@ -23,7 +37,7 @@ release:
   script:
     - |
       release-cli create --name "Release $CI_COMMIT_TAG" --tag-name $CI_COMMIT_TAG --description "Automated release for tag $CI_COMMIT_TAG" \
-        --assets-link "{\"name\":\"Download Executable\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/raw/hc?inline=false\",\"filepath\":\"/binaries/hc\"}" \
-        --assets-link "{\"name\":\"Download Checksum\",\"url\":\"https://git.prolicht.digital/go/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/raw/hc.sha256?inline=false\",\"filepath\":\"/binaries/hc.sha256\"}"
+        --assets-link "{\"name\":\"Download Executable\",\"url\":\"https://git.prolicht.digital/pub/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/raw/hc?inline=false\",\"filepath\":\"/binaries/hc\"}" \
+        --assets-link "{\"name\":\"Download Checksum\",\"url\":\"https://git.prolicht.digital/pub/healthcheck/-/jobs/`cat CI_JOB_ID.txt`/artifacts/raw/hc.sha256?inline=false\",\"filepath\":\"/binaries/hc.sha256\"}"
   only:
     - tags
