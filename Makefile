@@ -20,6 +20,9 @@ coverage:
 	$(GOCMD) test $(GOFILES) -v -coverprofile .testCoverage.txt
 	$(GOCMD) tool cover -func=.testCoverage.txt  # use total:\s+\(statements\)\s+(\d+.\d+\%) as Gitlab CI regextotal:\s+\(statements\)\s+(\d+.\d+\%)
 
+coverage-html: coverage
+	$(GOCMD) tool cover -html=.testCoverage.txt
+
 clean: ## Remove build related file
 	rm -fr ./$(PROGNAME)
 	rm -fr ./$(PROGNAME).sha256

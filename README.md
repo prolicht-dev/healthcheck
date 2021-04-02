@@ -27,3 +27,25 @@ COPY --from=buildImage /build/hc ./hc
 
 HEALTHCHECK --interval=1s --timeout=1s --start-period=2s --retries=3 CMD [ "/hc", "www.url.to.check.com" ]
 ```
+
+## Health check service library
+This project also provides a very simple health check library that can be used to set up the health check endpoint.
+
+This is an example of how to use the library:
+```go
+package main
+
+import "git.prolicht.digital/pub/healthcheck"
+
+func main() {
+	healthcheck.New().Start() // start a default health check service on port 11223
+
+	healthcheck.New(healthcheck.WithCustomCheck(func() int {
+		return 2
+	})).Start() // start a custom health check service
+
+	healthcheck.New(healthcheck.ListenOn(":8080"), healthcheck.WithCustomCheck(func() int {
+		return 2
+	})).Start() // start a custom health check service on port 8080
+}
+```
